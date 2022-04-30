@@ -32,6 +32,7 @@ def keyboard():
 
 
 def enter():
+    global line, x, y, opperation
     left_part=0
     calcul=""
     result=0.0
@@ -49,22 +50,25 @@ def enter():
         result=int(left_part)+int(right_part)
     if calcul == "-":
         result=int(left_part)-int(right_part)
-    print(round(result),3)
-    drawing.text(0, 22, str(result), size = 20)
+    print(round(result,3))
+    drawing.text(0, y[line+1]+3, str(result), size = 20)
+    line+=2
+    opperation=""
     
 
 def writting(player_input):
     global opperation
     inputed=[0,20,40,60,80,100,120]
     opperation += str(player_input)
-    drawing.text(inputed[len(opperation)-1], 0, str(player_input), size = 20)
+    drawing.text(inputed[len(opperation)-1], y[line]+2, str(player_input), size = 20)
     print(opperation)
 
 
 
 app = App(title="Calculator", width=300, height=500)
 app.bg=(32,32,32)
-
+line=0
+y=[0,20,40,60,80,100,120,140,160,180,200,220,240]
 
 box_numbers=Box(app,layout="grid", align="right")
 box_numbers.bg=(85,85,85)
